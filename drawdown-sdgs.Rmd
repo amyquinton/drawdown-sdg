@@ -24,7 +24,7 @@ A separate initiative, [Project Drawdown][2], has identified a range of solution
 *We realised that many of these [drawdown solutions][3] also provide additional sustainable development benefits, related directly to many of the other [17 SDGs][1].* So we attempted to categorise which of [Project Drawdown's top 76  solutions][3] we thought related to which of the [17 SDGs][1]. The figure and table below shows our rudimentary assessment that the [Project Drawdown's solutions][3] make a positive contribution to 16 of the [17 SDGs][1], not just to the Climate Action SDG!
 
 ```{r load-libraries-and-download-sheet, echo=FALSE, include=FALSE}
-#install.packages(c("googlesheets4", "tidyverse","treemapify","knitr", "kableExtra"))
+#install.packages(c("googlesheets4", "tidyverse","treemapify","knitr", "kableExtra", "googledrive"))
 #install.packages("devtools")
 #devtools::install_github("tidyverse/googlesheets4")
 library(googlesheets4)
@@ -32,10 +32,8 @@ library(tidyverse)
 library(treemapify)
 library(knitr)
 library(kableExtra)
+library(googledrive) 
 
-library(googledrive) # Either specify the user: 
-#drive_auth(email = "amquinton@gmail.com") 
-# Or, if you don't use multiple Google identities, you can be more vague: 
 drive_auth(email = TRUE)
 
 # google sheets URL"
