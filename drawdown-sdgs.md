@@ -14,11 +14,11 @@ output:
 
 [![](http://www.un.org/development/desa/disabilities/wp-content/uploads/sites/15/2015/10/SDG-Poster.png)][1]
 
-## R Markdown
+[Climate Action is number 13][9] of these [17 SDGs][1] that the world has agreed is of critical importance. 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+A separate initiative, [Project Drawdown][2], has identified a range of solutions ("drawdown solutions"), ranked via objective measures of CO2-equivalent reduction and net-costs, that if implemented will go a long way to achieving the Climate Action SDG. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+*We realised that many of these [drawdown solutions][3] also provide additional sustainable development benefits, related directly to many of the other [17 SDGs][1].* So we attempted to categorise which of [Project Drawdown's top 76  solutions][3] we thought related to which of the [17 SDGs][1]. The figure and table below shows our rudimentary assessment that the [Project Drawdown's solutions][3] make a positive contribution to 16 of the [17 SDGs][1], not just to the Climate Action SDG!
 
 
 

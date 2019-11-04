@@ -17,9 +17,29 @@ SDG_image_url <- "http://www.un.org/development/desa/disabilities/wp-content/upl
 ```
 [![](`r SDG_image_url`)][1]
 
+[Climate Action is number 13][9] of these [17 SDGs][1] that the world has agreed is of critical importance. 
 
+A separate initiative, [Project Drawdown][2], has identified a range of solutions ("drawdown solutions"), ranked via objective measures of CO2-equivalent reduction and net-costs, that if implemented will go a long way to achieving the Climate Action SDG. 
 
+*We realised that many of these [drawdown solutions][3] also provide additional sustainable development benefits, related directly to many of the other [17 SDGs][1].* So we attempted to categorise which of [Project Drawdown's top 76  solutions][3] we thought related to which of the [17 SDGs][1]. The figure and table below shows our rudimentary assessment that the [Project Drawdown's solutions][3] make a positive contribution to 16 of the [17 SDGs][1], not just to the Climate Action SDG!
 
+```{r setup, echo=FALSE, include=FALSE}
+#install.packages(c("googlesheets4", "tidyverse","treemapify","knitr", "kableExtra"))
+#install.packages("devtools")
+#devtools::install_github("tidyverse/googlesheets4")
+library(googlesheets4)
+library(tidyverse)
+library(treemapify)
+library(knitr)
+library(kableExtra)
+sheet_url <- "https://docs.google.com/spreadsheets/d/1hq5frci8R4o5kor4oraealN66X1av1IhkZmOydjORrQ/edit?usp=sharing"
+drawdown_sdg <- read_sheet(ss = sheet_url, sheet = 1) 
+# rename some variables
+drawdown_sdg %>%
+  rename(rank = Rank,
+         solution = Solution,
+         sector = Sector) -> drawdown_sdg
+```
 
 [1]: https://sustainabledevelopment.un.org/sdgs
 [2]: https://www.drawdown.org
