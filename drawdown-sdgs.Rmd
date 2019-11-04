@@ -11,7 +11,7 @@ output:
 *By [Amy Quinton][7] and [Daniel Newman][8]*
 
 [The Sustainable Development Goals (SDGs)][1] are global development targets adopted in September 2015, set to be achieved by 2030, by all [United Nations Member States][4]. All countries have agreed to work towards achieving these goals. Underneath the 17 goals are [169 SDG targets][5] and [232 unique indicators][6] to measure progress on the goals.
-```{r, echo=FALSE}
+```{r, SDG_image_url, echo=FALSE}
 # Define variable containing SDG image url
 SDG_image_url <- "http://www.un.org/development/desa/disabilities/wp-content/uploads/sites/15/2015/10/SDG-Poster.png"
 ```
@@ -23,7 +23,7 @@ A separate initiative, [Project Drawdown][2], has identified a range of solution
 
 *We realised that many of these [drawdown solutions][3] also provide additional sustainable development benefits, related directly to many of the other [17 SDGs][1].* So we attempted to categorise which of [Project Drawdown's top 76  solutions][3] we thought related to which of the [17 SDGs][1]. The figure and table below shows our rudimentary assessment that the [Project Drawdown's solutions][3] make a positive contribution to 16 of the [17 SDGs][1], not just to the Climate Action SDG!
 
-```{r setup, echo=FALSE, include=FALSE}
+```{r load-libraries-and-download-sheet, echo=FALSE, include=FALSE}
 #install.packages(c("googlesheets4", "tidyverse","treemapify","knitr", "kableExtra"))
 #install.packages("devtools")
 #devtools::install_github("tidyverse/googlesheets4")
@@ -32,14 +32,142 @@ library(tidyverse)
 library(treemapify)
 library(knitr)
 library(kableExtra)
+
+library(googledrive) # Either specify the user: 
+#drive_auth(email = "amquinton@gmail.com") 
+# Or, if you don't use multiple Google identities, you can be more vague: 
+drive_auth(email = TRUE)
+
+# google sheets URL"
 sheet_url <- "https://docs.google.com/spreadsheets/d/1hq5frci8R4o5kor4oraealN66X1av1IhkZmOydjORrQ/edit?usp=sharing"
-drawdown_sdg <- read_sheet(ss = sheet_url, sheet = 1) 
-# rename some variables
+
+# download google sheet:
+drawdown_sdg <- read_sheet(ss = sheet_url, sheet = 1)
+```
+
+```{r reshape-data, echo=FALSE, include=FALSE}
+# rename some variables:
 drawdown_sdg %>%
   rename(rank = Rank,
          solution = Solution,
          sector = Sector) -> drawdown_sdg
+
+# reshape drawdown_sdg data into "long" format:
+drawdown_sdg %>%
+  select(solution, SDG1, SDG2, SDG3, SDG4, SDG5, SDG6) %>%
+  pivot_longer(c(-solution), names_to = "sdg_number", values_to = "sdg", values_drop_na = T) %>%
+  select(solution, sdg) -> long
+
+# Join TOTAL_ATMOSPHERIC_CO2_EQ_REDUCTION_GT to "long" dataframe:
+drawdown_sdg %>%
+  select(solution, TOTAL_ATMOSPHERIC_CO2_EQ_REDUCTION_GT) -> to_join
+long %>%
+  full_join(to_join) -> long
+rm(to_join)
+
+# check to make sure SDGs haven't been assigned twice to the same drawdown solution:
+long %>%
+  group_by(solution, sdg) %>%
+  summarise(n = n()) %>%
+  ungroup() %>%
+  summarise(max = max(n)) #should be max 1
 ```
+
+```{r, echo=FALSE, include=FALSE}
+# Which drawdown solutions cover the most SDGs? see "num_sdgs_per_drawdown" dataframe created below:
+long %>%
+  group_by(solution) %>%
+  summarise(num_sdgs = n_distinct(sdg)) %>%
+  arrange(desc(num_sdgs)) -> num_sdgs_per_drawdown
+
+# Which SDGs have the most drawdown solutions? see "num_drawdowns_per_sdg" dataframe created below:
+long %>%
+  group_by(sdg) %>%
+  summarise(num_drawdowns = n_distinct(solution),
+            total_co2_eq = sum(TOTAL_ATMOSPHERIC_CO2_EQ_REDUCTION_GT)) %>%
+  arrange(desc(num_drawdowns)) -> num_drawdowns_per_sdg
+
+# create a dataframe called "select_order" below that gets the column names in the order we will need 
+# so that SDGs with more related Drawdown Solutions appear in columns towards the left:
+num_drawdowns_per_sdg %>%
+  mutate(sdg = chartr(x = sdg, old = "_", new = " ")) %>%
+  arrange(desc(num_drawdowns)) %>%
+  select(sdg) %>%
+  mutate(values_from = NA) %>%
+   pivot_wider(names_from = sdg, values_from = values_from) %>%
+  names() -> select_order
+```
+
+
+## Project Drawdown's solutions address many of the SDGs
+**The size of each rectangles corresponds to the number of Drawdown Solutions that could help achieve that SDG. So the bigger the SDG rectangle, the more Drawdown Solutions could be applied.**
+```{r treemap1,  echo=FALSE}
+# create the treemap plot:
+num_drawdowns_per_sdg %>%
+  mutate(sdg = chartr(x = sdg, old = "_", new = " ")) %>%
+  mutate(sdg = paste("SDG", sdg, sep = " ")) %>%
+  ggplot(aes(area = num_drawdowns, label= sdg, fill = num_drawdowns))  +
+  geom_treemap() +
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre",
+                    grow = F, min.size = 1, reflow = T) +
+  theme(legend.position="none") 
+```
+
+### The data pertaining to the plot above 
+**SDGs with more related Drawdown Solutions appear in columns towards the left:**<br>
+<sub>*Scroll over the table to navigate*
+
+```{r table1, echo=FALSE}
+# set defult options for knitr to use when it creates the tables below:
+options(knitr.kable.NA = '',
+        knitr.table.format = 'markdown') 
+
+long %>%
+  mutate(sdg = chartr(x = sdg, old = "_", new = " ")) %>%
+  select(sdg, solution) %>%
+   group_by(sdg) %>%
+   mutate(rn = row_number()) %>% # recreated unique identifier column
+  pivot_wider(names_from = sdg, values_from = solution) %>%
+  select(select_order) -> for_table
+
+# make first table 
+kable(for_table, "html") %>%
+  kable_styling("striped") %>% 
+  scroll_box(height = "1200px", width = "900px")
+
+```
+
+### From another perspective, which of the Drawdown Solutions did we find related to the most SDGs? 
+
+The table below shows we assessed that the [Educating Girls][10] and [Reduced Food Waste][11] drawdown solutions are related to the most SDGs, each relating to 6 SDGs:
+
+- *Educating Girls:* 
+  - Climate Action; Gender Equality; No Poverty;	Decent Work and Economic Growth; Reduced Inequality; Quality Education.
+
+- *Reduced Food Waste:* 
+  - Climate Action;	Zero Hunger; Good Health and Well being;	Sustainable Cities and Communities; Responsible Consumption and Production; Life on Land.
+  
+The table below shows our rudimentary assessment of the number of related SDGs for each of the 76 best Drawdown Solutions  
+
+**Number of related SDGs for each of the 76 best Drawdown Solutions:**<br>
+<sub>*Scroll over the table to navigate*
+
+```{r table2, echo=FALSE}
+# make 2nd table
+num_sdgs_per_drawdown %>%
+  rename(`Drawdown Solution` = solution,
+         `Number of related SDGs` = num_sdgs) %>%
+  kable("html") %>% 
+  kable_styling("striped") %>% 
+  scroll_box(height = "300px")
+```
+
+## Open data and code from this analysis
+We hope this post is interesting and thought provoking. If anybody would like to contribute further to it, [here][12] is the spreadsheet containing our rough analysis with comments allowed for everybody - we will recieve  email notifications if/when people comment their suggestions. Also [here][13] is a repo. with the code we used to produce everything else in this post, pull requests welcome. 
+
+## Conclusions
+Governments, Businesses and other orgs. are looking for ways to contribute towards the [Sustainable Development Goals (SDGs)][1]. Our rudimentary analysis above shows that [The Drawdown Solutions][3] provide well operationalised ways to address climate change while also contributing to a broad range of other SDGs and benefits.
+
 
 [1]: https://sustainabledevelopment.un.org/sdgs
 [2]: https://www.drawdown.org
