@@ -11,13 +11,14 @@ output:
 *By [Amy Quinton][7] and [Daniel Newman][8]*
 
 [The Sustainable Development Goals (SDGs)][1] are global development targets adopted in September 2015, set to be achieved by 2030, by all [United Nations Member States][4]. All countries have agreed to work towards achieving these goals. Underneath the 17 goals are [169 SDG targets][5] and [232 unique indicators][6] to measure progress on the goals.
-```{r, echo=FALSE}
-# Define variable containing SDG image url
-SDG_image_url <- "http://www.un.org/development/desa/disabilities/wp-content/uploads/sites/15/2015/10/SDG-Poster.png"
-```
-[![](`r SDG_image_url`)][1]
 
+[![](http://www.un.org/development/desa/disabilities/wp-content/uploads/sites/15/2015/10/SDG-Poster.png)][1]
 
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 
 
