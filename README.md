@@ -14,7 +14,7 @@ A separate initiative, [Project Drawdown][2], has identified a range of solution
 
 ### Analysis
 
-[drawdown-sdgs.Rmd][13] here has the code we used to for the analysis, pull requests welcome. 
+[drawdown-sdgs.Rmd][13] has the code we used to for the analysis, pull requests welcome. 
 
 [1]: https://sustainabledevelopment.un.org/sdgs
 [2]: https://www.drawdown.org
