@@ -10,7 +10,7 @@ output:
 
 *By [Amy Quinton][7] and [Daniel Newman][8]*
 
-[The Sustainable Development Goals (SDGs)][1] are global development targets adopted in September 2015, set to be achieved by 2030, by all [United Nations Member States][4]. All countries have agreed to work towards achieving these goals. Underneath the 17 goals are [169 SDG targets][5] and [232 unique indicators][6] to measure progress on the goals.
+In 2015 all [United Nations (UN) countries][4] agreed to work towards achieving [the Sustainable Development Goals (SDGs)][1] by 2030. [169 targets][5] and [232 unique indicators][6] measure progress on the STGs.
 
 [![](http://www.un.org/development/desa/disabilities/wp-content/uploads/sites/15/2015/10/SDG-Poster.png)][1]
 
