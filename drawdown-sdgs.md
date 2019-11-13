@@ -1,5 +1,5 @@
 ---
-title: "Project Drawdown solutions meet many Sustainable Development Goals"
+title: "Project Drawdown Solutions help to meet many Sustainable Development Goals"
 output: 
   html_document: 
     fig_height: 7
@@ -10,17 +10,20 @@ output:
 
 *By [Amy Quinton][7] and [Daniel Newman][8]*
 
-In 2015 all [United Nations (UN) countries][4] agreed to work towards achieving [the Sustainable Development Goals (SDGs)][1] by 2030. [169 targets][5] and [232 unique indicators][6] measure progress on the [17 STGs][1].
+
+All [United Nations (UN) countries][4] are working towards achieving the [Sustainable Development Goals (SDGs)][1] by 2030. [169 targets][5] and [232 unique indicators][6] measure progress on the [17 SDGs][1].
 
 [![](http://www.un.org/development/desa/disabilities/wp-content/uploads/sites/15/2015/10/SDG-Poster.png)][1]
 
-[Climate Action is number 13][9] of these [17 SDGs][1] that the world has agreed is of critical importance. 
+[Climate Action][9] is one of these [17 SDGs][1] that the world has agreed is of critical importance, and it is underpinned by the [Paris Agreement][17]. A separate initiative, [Project Drawdown][2], has identified a range of solutions to limit climate change ("Drawdown Solutions"), ranked via objective measures of CO2-equivalent reduction and costs. 
 
-A separate initiative, [Project Drawdown][2], has identified a range of solutions ("drawdown solutions"), ranked via objective measures of CO2-equivalent reduction and costs, that would largely achieve the [Climate Action SDG][9]. 
+*We realised that most [Drawdown Solutions][3] provide extra sustainable development benefits, additional to climate action, which relate directly to many of the [17 SDGs][1].* So we attempted to categorise which of [Project Drawdown's top 76  solutions][3] related to which of the [17 SDGs][1].
 
-*We realised that most [drawdown solutions][3] provide additional sustainable development benefits which relate directly to many of the [17 SDGs][1].* So we attempted to categorise which of [Project Drawdown's top 76  solutions][3] we thought related to which of the [17 SDGs][1].
+This is timely as the [UN Department of Economic and Social Affairs][15] (UN DESA) and the [UN Framework Convention on Climate Change][16] (UNFCCC) have just published new analysis titled ["Maximizing Co-benefits by Linking Implementation of the Sustainable Development Goals and Climate Action"][14].
 
-The figure and table below shows our rudimentary assessment that the [Project Drawdown's solutions][3] make a positive contribution to 16 of the [17 SDGs][1], not just to the Climate Action SDG!
+The figure and table below shows our rudimentary assessment that the [Project Drawdown's solutions][3] make a positive contribution to 16 of the [17 SDGs][1], not just to the Climate Action SDG! 
+
+
 
 
 
@@ -1355,7 +1358,7 @@ The figure and table below shows our rudimentary assessment that the [Project Dr
 
 ### From the other perspective, which of the Drawdown Solutions relates to the most SDGs? 
 
-The table below shows our assessment that the [Educating Girls][10] and [Reduced Food Waste][11] drawdown solutions are related to the most SDGs, each applicable to (at least) 6 SDGs:
+The table below shows our assessment that the [Educating Girls][10] and [Reduced Food Waste][11] Drawdown Solutions are related to the most SDGs, each applicable to (at least) 6 SDGs:
 
 - *Educating Girls:* 
   - Climate Action; Gender Equality; No Poverty;	Decent Work and Economic Growth; Reduced Inequality; Quality Education.
@@ -1687,7 +1690,9 @@ The table below shows our rudimentary assessment of the number of related SDGs f
 We hope this post is interesting and thought provoking. If anybody would like to contribute further to it, [here][12] is the spreadsheet containing our rough analysis. Anyone can add comments/suggestions. We will recieve an email notification when people comment. Also [here][13] is a repository with the code we used to produce everything else in this post (pull requests welcome). 
 
 ## Conclusions
-Our rudimentary analysis above shows that [The Drawdown Solutions][3] provide well described and measurable ways to address climate change while also contributing to a broad range of other SDGs and benefits. 
+Our rudimentary analysis shows that the [Drawdown Solutions][3] provide well described and measurable ways to address climate change while also contributing to a broad range of other SDGs and benefits. 
+
+This aligns with UN DESA and UNFCCC's [lastest report][14] on the synergies between global commitments to climate action and the SDGs.
 
 We hope this is useful for governments, businesses, not-for-profits and others looking for direct ways to contribute towards the [Sustainable Development Goals (SDGs)][1].
 
@@ -1705,3 +1710,7 @@ We hope this is useful for governments, businesses, not-for-profits and others l
 [11]: https://www.drawdown.org/solutions/food/reduced-food-waste
 [12]: https://docs.google.com/spreadsheets/d/1hq5frci8R4o5kor4oraealN66X1av1IhkZmOydjORrQ/edit?usp=sharing
 [13]: https://github.com/amyquinton/drawdown-sdg/blob/master/drawdown-sdgs.Rmd
+[14]: https://sustainabledevelopment.un.org/?page=view&nr=1632&type=230&menu=2059
+[15]: https://www.un.org/development/desa/en/
+[16]: https://unfccc.int/
+[17]: https://unfccc.int/process-and-meetings/the-paris-agreement/the-paris-agreement
